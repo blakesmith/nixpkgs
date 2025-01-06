@@ -140,10 +140,11 @@ in {
   atd = handleTest ./atd.nix {};
   atop = handleTest ./atop.nix {};
   atticd = runTest ./atticd.nix;
-  atuin = handleTest ./atuin.nix {};
+  atuin = runTest ./atuin.nix;
   audiobookshelf = handleTest ./audiobookshelf.nix {};
   auth-mysql = handleTest ./auth-mysql.nix {};
   authelia = handleTest ./authelia.nix {};
+  auto-cpufreq = handleTest ./auto-cpufreq.nix {};
   avahi = handleTest ./avahi.nix {};
   avahi-with-resolved = handleTest ./avahi.nix { networkd = true; };
   ayatana-indicators = runTest ./ayatana-indicators.nix;
@@ -467,6 +468,7 @@ in {
   ifm = handleTest ./ifm.nix {};
   iftop = handleTest ./iftop.nix {};
   immich = handleTest ./web-apps/immich.nix {};
+  immich-public-proxy = handleTest ./web-apps/immich-public-proxy.nix {};
   incron = handleTest ./incron.nix {};
   incus = pkgs.recurseIntoAttrs (handleTest ./incus { lts = false; inherit system pkgs; });
   incus-lts = pkgs.recurseIntoAttrs (handleTest ./incus { inherit system pkgs; });
@@ -520,6 +522,7 @@ in {
   keyd = handleTest ./keyd.nix {};
   keymap = handleTest ./keymap.nix {};
   kimai = handleTest ./kimai.nix {};
+  kmonad = runTest ./kmonad.nix;
   knot = handleTest ./knot.nix {};
   komga = handleTest ./komga.nix {};
   krb5 = discoverTests (import ./krb5);
@@ -658,6 +661,11 @@ in {
   navidrome = handleTest ./navidrome.nix {};
   nbd = handleTest ./nbd.nix {};
   ncdns = handleTest ./ncdns.nix {};
+  ncps = runTest ./ncps.nix;
+  ncps-custom-cache-datapath = runTest {
+    imports = [ ./ncps.nix ];
+    defaults.services.ncps.cache.dataPath =  "/path/to/ncps";
+  };
   ndppd = handleTest ./ndppd.nix {};
   nix-channel = pkgs.callPackage ../modules/config/nix-channel/test.nix { };
   nebula = handleTest ./nebula.nix {};
@@ -1187,6 +1195,7 @@ in {
   yggdrasil = handleTest ./yggdrasil.nix {};
   your_spotify = handleTest ./your_spotify.nix {};
   zammad = handleTest ./zammad.nix {};
+  zenohd = handleTest ./zenohd.nix {};
   zeronet-conservancy = handleTest ./zeronet-conservancy.nix {};
   zfs = handleTest ./zfs.nix {};
   zigbee2mqtt = handleTest ./zigbee2mqtt.nix {};
